@@ -5,9 +5,9 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     isLarge: boolean
 }
 
-export const Button = (props: ButtonProps) => {
+export const Button = ({isLarge, ...props}: ButtonProps) => {
     return (
-        <button {...props} className={props.isLarge ? styles.buttonLarge : styles.buttonRegular}>
+        <button {...props} className={isLarge ? styles.buttonLarge : styles.buttonRegular}>
             <div className={styles.buttonLargeMeta}>
                 {props.children}
             </div>
