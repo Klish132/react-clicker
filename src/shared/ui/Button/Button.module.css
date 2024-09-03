@@ -1,0 +1,23 @@
+﻿.buttonRegular {
+    padding: 10px 30px;
+    color: #ADC178;
+    font-size: 16px;
+    font-weight: bold;
+    background: transparent;
+    border: 3px solid #DDE5B6;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.buttonLarge {
+    height: 250px;
+    width: 250px;
+    padding: 5px 20px;
+    color: #ADC178;
+    font-size: 38px;
+    font-weight: bold;
+    background: #DDE5B6;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
