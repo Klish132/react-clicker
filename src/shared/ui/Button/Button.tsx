@@ -8,7 +8,9 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 export const Button = (props: ButtonProps) => {
     return (
         <button {...props} className={props.isLarge ? styles.buttonLarge : styles.buttonRegular}>
-            {props.children}
+            <div className={styles.buttonLargeMeta}>
+                {props.children}
+            </div>
         </button>
     );
 };

@@ -9,6 +9,16 @@
     cursor: pointer;
 }
 
+.buttonRegular:hover {
+    background: #DDE5B6;
+}
+
+.buttonRegular:active {
+    background: #ADC178;
+    color: #DDE5B6;
+    border: 3px solid #ADC178;
+}
+
 .buttonLarge {
     height: 250px;
     width: 250px;
@@ -20,4 +30,9 @@
     border: none;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+.buttonLarge:active {
+    transform: scale(0.95);
 }

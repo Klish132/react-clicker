@@ -1,0 +1,16 @@
+﻿.input {
+    width: 100%;
+    margin: 5px 0;
+    color: rgba(173, 193, 120, 0.50);
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: transparent;
+    border: 3px solid #DDE5B6;
+    border-radius: 10px;
+}
+
+.input:focus {
+    outline: none;
+    color: #ADC178;
+}
