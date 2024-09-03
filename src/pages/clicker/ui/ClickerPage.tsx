@@ -2,6 +2,7 @@
 import {Button} from "../../../shared/ui/Button/Button";
 import {Input} from "../../../shared/ui/Input/Input";
 import {Modal} from "../../../shared/ui/Modal/Modal";
+import {Text} from "../../../shared/ui/Text/Text";
 
 export const ClickerPage = () => {
     const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -14,6 +15,7 @@ export const ClickerPage = () => {
                 isOpen={isModalOpen}
                 setIsOpen={setIsModalOpen}
             >
+                <Text sizePx={30} color={"#ADC178"}>Text</Text>
                 <Input placeholder="Text..."></Input>
                 <Button isLarge={false}>Submit</Button>
             </Modal>
