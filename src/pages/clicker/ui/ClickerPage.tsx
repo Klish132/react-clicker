@@ -1,23 +1,38 @@
-﻿import React from 'react';
+﻿import React, {useContext} from 'react';
 import {Button} from "../../../shared/ui/Button/Button";
-import {Input} from "../../../shared/ui/Input/Input";
 import {Modal} from "../../../shared/ui/Modal/Modal";
-import {Text} from "../../../shared/ui/Text/Text";
+import AuthForm from "../../../features/users/authenticate/ui/AuthForm";
+import {postLogIn} from "../../../entities/User/api/postLogIn";
+import {AuthContext} from "../../../app/providers/AuthContextProvider";
+import {useLocalStorage} from "@uidotdev/usehooks";
 
 export const ClickerPage = () => {
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const {isLoggedIn, login} = useContext(AuthContext) || {};
+    const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(!isLoggedIn);
+    const [username, setUsername] = useLocalStorage<string | undefined>("username", undefined)
+
+    const handleAuth = (authUsername: string, authPassword: string) => {
+        postLogIn(authUsername, authPassword)
+            .catch(error => console.log(error))
+            .then(guid => {
+                if (guid) {
+                    login!(guid)
+                    setIsAuthModalOpen(false);
+                    setUsername(authUsername)
+                }
+            })
+    }
 
     return (
         <div>
             <Button isLarge={false}>Click me!</Button>
-            <Button isLarge={true} onClick={() => setIsModalOpen(true)}>Click me!</Button>
+            <Button isLarge={true} onClick={() => setIsAuthModalOpen(true)}>Click me!</Button>
             <Modal
-                isOpen={isModalOpen}
-                setIsOpen={setIsModalOpen}
+                isOpen={isAuthModalOpen}
+                setIsOpen={setIsAuthModalOpen}
+                closeOnOutsideClick={false}
             >
-                <Text sizePx={30} color={"#ADC178"}>Text</Text>
-                <Input placeholder="Text..."></Input>
-                <Button isLarge={false}>Submit</Button>
+                <AuthForm onAuthenticate={handleAuth}/>
             </Modal>
         </div>
     );

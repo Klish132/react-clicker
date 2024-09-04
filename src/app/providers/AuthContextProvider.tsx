@@ -1,10 +1,10 @@
 ﻿import {useLocalStorage} from "@uidotdev/usehooks";
-import React, {createContext, useCallback, useState} from "react";
+import React, {createContext, useCallback, useEffect, useState} from "react";
 
 type AuthContextProps = {
     isLoggedIn: boolean;
     id: string | void;
-    login: () => void;
+    login: (id: string) => void;
     logout: () => void;
 };
 
@@ -15,31 +15,41 @@ type AuthContextProviderProps = {
 };
 
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
+    const [isInitialized, setIsInitialized] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [id] = useLocalStorage<string>("id", undefined)
+    const [id, setId] = useLocalStorage<string | undefined>("id", undefined)
 
-    if (id) {
+    const login = useCallback((newId: string) => {
+        setId(newId)
         setIsLoggedIn(true);
-    }
-
-    const login = useCallback(() => {
-        setIsLoggedIn(true);
-    }, []);
+    }, [setId]);
 
     const logout = useCallback(() => {
         setIsLoggedIn(false);
-    }, []);
+        setId(undefined);
+    }, [setId]);
+
+    useEffect(() => {
+        if (id) {
+            login(id)
+        }
+        setIsInitialized(true)
+    }, [id, login])
 
     return (
-        <AuthContext.Provider
-            value={{
-                isLoggedIn: isLoggedIn,
-                id: id,
-                login: login,
-                logout: logout,
-            }}
-        >
-            {props.children}
-        </AuthContext.Provider>
+        isInitialized
+            ?
+            <AuthContext.Provider
+                value={{
+                    isLoggedIn: isLoggedIn,
+                    id: id,
+                    login: login,
+                    logout: logout,
+                }}
+            >
+                {props.children}
+            </AuthContext.Provider>
+            :
+            <div/>
     );
 };

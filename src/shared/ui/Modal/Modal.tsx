@@ -4,6 +4,7 @@ import styles from "./Modal.module.css"
 type ModalProps = {
     isOpen: boolean;
     setIsOpen: (isOpen: boolean) => void;
+    closeOnOutsideClick: boolean;
     children?: React.ReactNode;
 }
 
@@ -19,7 +20,10 @@ export const Modal = (props: ModalProps) => {
     }, [props.isOpen])
 
     return (
-        <div className={rootClasses} onClick={() => props.setIsOpen(false)}>
+        <div className={rootClasses} onClick={() => {
+            if (props.closeOnOutsideClick)
+                props.setIsOpen(false)
+        }}>
             <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
                 {props.children}
             </div>
