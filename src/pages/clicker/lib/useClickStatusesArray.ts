@@ -3,14 +3,13 @@
 export const useClickStatusesArray = (clicksCount: number, maxRows: number) => useMemo(() => {
     let result: number[][] = []
 
-    // Округляем кол-во кликов до множителя 10, или до 0 (0, 10, 100, 1000)
+    // Округляем кол-во кликов вниз до множителя 10, или до 0 (0, 10, 100, 1000, и т.п.)
     let flooredClicks = Math.pow(10, Math.ceil(Math.log10(clicksCount)) - 1)
     flooredClicks = flooredClicks === 1 ? 0 : flooredClicks
     // Считаем кол-во рядов для текущего кол-ва кликов (всегда мин. 1 ряд)
     let rowsCount = flooredClicks === 0
         ? 1
         : Math.min(maxRows, Math.log10(flooredClicks) + 1)
-    console.log(rowsCount)
 
     // Для каждого ряда
     for (let row = 1; row <= rowsCount; row++) {

@@ -7,7 +7,7 @@ import { useDebounce } from "@uidotdev/usehooks";
 
 export const useClicks = (username: string, id: string): [number | undefined, React.Dispatch<React.SetStateAction<number | undefined>>] => {
     const [clicksCount, setClicksCount] = useState<number | undefined>(undefined)
-    const debouncedClicksCount = useDebounce(clicksCount, 500)
+    const debouncedClicksCount = useDebounce(clicksCount, 300)
 
     const config = useMemo(() => {
         return {
