@@ -8,6 +8,8 @@ import {useLocalStorage} from "@uidotdev/usehooks";
 import {postLogIn} from "../entities/User/api/postLogIn";
 import {handleError} from "../shared/lib/handleError";
 import './styles/App.css';
+import {BrowserRouter} from "react-router-dom";
+import {AppRouter} from "./router/AppRouter";
 
 export function App() {
     const {isLoggedIn, login} = useContext(AuthContext) || {};
@@ -34,15 +36,17 @@ export function App() {
 
     return (
         <>
-            <Navbar/>
-            <Modal
-                isOpen={isAuthModalOpen}
-                setIsOpen={setIsAuthModalOpen}
-                closeOnOutsideClick={false}
-            >
-                <AuthForm onAuthenticate={handleAuth}/>
-            </Modal>
-            <ClickerPage/>
+            <BrowserRouter>
+                <Modal
+                    isOpen={isAuthModalOpen}
+                    setIsOpen={setIsAuthModalOpen}
+                    closeOnOutsideClick={false}
+                >
+                    <AuthForm onAuthenticate={handleAuth}/>
+                </Modal>
+                <Navbar/>
+                <AppRouter/>
+            </BrowserRouter>
         </>
     );
 }
