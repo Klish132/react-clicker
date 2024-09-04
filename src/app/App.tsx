@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {ClickerPage} from "../pages/clicker/ui/ClickerPage";
 import {AuthContext} from "./providers/AuthContextProvider";
 import {Navbar} from "../shared/ui/Navbar/Navbar";
 import {AuthForm} from "../features/users/authenticate/ui/AuthForm";
@@ -14,7 +13,7 @@ import {AppRouter} from "./router/AppRouter";
 export function App() {
     const {isLoggedIn, login} = useContext(AuthContext) || {};
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const [username, setUsername] = useLocalStorage<string | undefined>("username", undefined)
+    const [, setUsername] = useLocalStorage<string | undefined>("username", undefined)
 
     const handleAuth = (authUsername: string, authPassword: string) => {
         postLogIn(authUsername, authPassword)
@@ -45,7 +44,11 @@ export function App() {
                     <AuthForm onAuthenticate={handleAuth}/>
                 </Modal>
                 <Navbar/>
-                <AppRouter/>
+                {isLoggedIn
+                    ?
+                    <AppRouter/>
+                    : <div></div>
+                }
             </BrowserRouter>
         </>
     );
