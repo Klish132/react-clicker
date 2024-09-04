@@ -22,6 +22,7 @@ export const AuthForm = (props: AuthFormProps) => {
             />
             <Input
                 placeholder="Password..."
+                type="password"
                 onChange={e => setAuthInfo({...authInfo, password: e.target.value})}
             />
             <Button
