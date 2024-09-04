@@ -4,9 +4,8 @@ import {Navbar} from "../shared/ui/Navbar/Navbar";
 import {AuthForm} from "../features/users/authenticate/ui/AuthForm";
 import {Modal} from "../shared/ui/Modal/Modal";
 import {useLocalStorage} from "@uidotdev/usehooks";
-import {postLogIn} from "../entities/User/api/postLogIn";
+import {postLogIn} from "../entities/user/api/postLogIn";
 import {handleError} from "../shared/lib/handleError";
-import './styles/App.css';
 import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "./router/AppRouter";
 

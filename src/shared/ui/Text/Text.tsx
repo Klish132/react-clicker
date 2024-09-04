@@ -4,15 +4,18 @@ type TextProps = {
     sizePx: number;
     color: "#DDE5B6" | "#ADC178" | "#A98467",
     children: React.ReactNode;
+    className?: string;
 }
 
 export const Text = (props: TextProps) => {
     return (
-        <p style={{
-            fontWeight: "bold",
-            fontSize: props.sizePx,
-            color: props.color
-        }}
+        <p
+            className={props.className}
+            style={{
+                fontWeight: "bold",
+                fontSize: props.sizePx,
+                color: props.color
+            }}
         >
             {props.children}
         </p>

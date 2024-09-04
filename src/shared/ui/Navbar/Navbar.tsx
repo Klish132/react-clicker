@@ -12,13 +12,15 @@ export const Navbar = () => {
     return (
         <div className={styles.navbar}>
             <Text sizePx={16} color={"#A98467"}>{username}</Text>
-            <Button isLarge={false} onClick={() => {
-                logout!()
-                setUsername(undefined)
-            }}
-            >
-                Log out
-            </Button>
+            <div className={styles.navbarList}>
+                <Button isLarge={false} onClick={() => {
+                    logout!()
+                    setUsername(undefined)
+                }}
+                >
+                    Log out
+                </Button>
+            </div>
         </div>
     );
 };

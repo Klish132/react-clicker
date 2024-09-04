@@ -6,6 +6,7 @@ import {AuthContext} from "../../../app/providers/AuthContextProvider";
 import {ClickStatus} from "../../../entities/clicks/ui/ClickStatus";
 import {useClickStatusesArray} from "../lib/useClickStatusesArray";
 import {Button} from "../../../shared/ui/Button/Button";
+import styles from "./ClickerPage.module.css"
 
 export const ClickerPage = () => {
     const [username] = useLocalStorage<string | undefined>("username", undefined)
@@ -16,17 +17,29 @@ export const ClickerPage = () => {
     const clickMultiplier = 1
 
     return (
-        <div>
-            <Text sizePx={50} color={"#DDE5B6"}>Clicks: {clicksCount}</Text>
+        <div className={styles.page}>
+            <div className={styles.pageHeader}>
+                <Button
+                    className={styles.pageHeaderItem}
+                    isLarge={false}
+                    onClick={() => setClicksCount(0)}
+                >
+                    Reset
+                </Button>
+            </div>
+            <Text
+                sizePx={50}
+                color={"#DDE5B6"}
+            >
+                Clicks: {clicksCount}
+            </Text>
             {clickStatusesArray.map((row, rowIdx) => (
                 <div key={rowIdx}>
                     {row.map(leaf => <ClickStatus key={leaf}/>)}
                 </div>
             ))}
-            <Button isLarge={false} onClick={() => setClicksCount(0)}>
-                Reset
-            </Button>
             <Button
+                className={styles.clickerButton}
                 isLarge={true}
                 onClick={() => setClicksCount(clicksCount! + clickMultiplier)}
             >

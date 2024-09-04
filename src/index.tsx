@@ -6,6 +6,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {AuthContextProvider} from "./app/providers/AuthContextProvider";
 import {QueryClientProvider} from "react-query";
+import './app/styles/index.css';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement

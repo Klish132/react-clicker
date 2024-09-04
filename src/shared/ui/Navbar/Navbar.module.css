@@ -1,8 +1,15 @@
 ﻿.navbar {
-    height: 50px;
-    width: 100vw;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    width: 100vw;
     padding: 0 15px;
     background: transparent;
+}
+
+.navbarList {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
 }

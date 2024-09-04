@@ -1,4 +1,4 @@
-﻿import React, {ButtonHTMLAttributes} from 'react';
+﻿import React, {ButtonHTMLAttributes, useMemo} from 'react';
 import styles from "./Button.module.css"
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -6,8 +6,14 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 }
 
 export const Button = ({isLarge, ...props}: ButtonProps) => {
+
+    const classes = useMemo(() => {
+        let sizeClass = isLarge ? styles.buttonLarge : styles.buttonRegular
+        return [sizeClass, props.className].join(' ')
+    }, [isLarge, props.className])
+
     return (
-        <button {...props} className={isLarge ? styles.buttonLarge : styles.buttonRegular}>
+        <button {...props} className={classes}>
             <div className={styles.buttonLargeMeta}>
                 {props.children}
             </div>
