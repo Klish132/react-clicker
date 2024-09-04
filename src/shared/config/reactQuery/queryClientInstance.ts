@@ -1,5 +1,6 @@
 ﻿import {QueryClient} from "react-query";
 import {isAxiosError} from "axios";
+import {handleError} from "../../lib/handleError";
 
 export const queryClientInstance = new QueryClient({
     defaultOptions: {
@@ -7,7 +8,7 @@ export const queryClientInstance = new QueryClient({
             suspense: true,
             onError: error => {
                 if (isAxiosError(error)) {
-                    // todo
+                    handleError(error);
                 }
             },
             useErrorBoundary: false,

@@ -7,7 +7,7 @@ type AuthFormProps = {
     onAuthenticate: (username: string, password: string) => void;
 }
 
-const AuthForm = (props: AuthFormProps) => {
+export const AuthForm = (props: AuthFormProps) => {
     const [authInfo, setAuthInfo] = useState({username: "", password: ""});
 
     return (
@@ -16,11 +16,20 @@ const AuthForm = (props: AuthFormProps) => {
             props.onAuthenticate(authInfo.username, authInfo.password);
         }}>
             <Text sizePx={30} color={"#ADC178"}>Log in</Text>
-            <Input placeholder="Username..." onChange={e => setAuthInfo({...authInfo, username: e.target.value})}></Input>
-            <Input placeholder="Password..." onChange={e => setAuthInfo({...authInfo, password: e.target.value})}></Input>
-            <Button type="submit" isLarge={false}>Log in</Button>
+            <Input
+                placeholder="Username..."
+                onChange={e => setAuthInfo({...authInfo, username: e.target.value})}
+            />
+            <Input
+                placeholder="Password..."
+                onChange={e => setAuthInfo({...authInfo, password: e.target.value})}
+            />
+            <Button
+                type="submit"
+                isLarge={false}
+            >
+                Log in
+            </Button>
         </form>
     );
 };
-
-export default AuthForm;
