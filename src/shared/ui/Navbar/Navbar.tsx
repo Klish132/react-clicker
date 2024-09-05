@@ -2,8 +2,8 @@
 import {Button} from "../Button/Button";
 import styles from "./Navbar.module.css"
 import {AuthContext} from "../../../app/providers/AuthContextProvider";
-import {useLocalStorage} from "@uidotdev/usehooks";
 import {Text} from "../Text/Text";
+import {useLocalStorage} from "../../lib/useLocalStorage";
 
 export const Navbar = () => {
     const {logout} = useContext(AuthContext) || {};

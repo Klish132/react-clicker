@@ -3,11 +3,11 @@ import {AuthContext} from "./providers/AuthContextProvider";
 import {Navbar} from "../shared/ui/Navbar/Navbar";
 import {AuthForm} from "../features/users/authenticate/ui/AuthForm";
 import {Modal} from "../shared/ui/Modal/Modal";
-import {useLocalStorage} from "@uidotdev/usehooks";
 import {postLogIn} from "../entities/user/api/postLogIn";
 import {handleError} from "../shared/lib/handleError";
 import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "./router/AppRouter";
+import {useLocalStorage} from "../shared/lib/useLocalStorage";
 
 export function App() {
     const {isLoggedIn, login} = useContext(AuthContext) || {};

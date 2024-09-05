@@ -1,12 +1,12 @@
 ﻿import React, {useContext} from 'react';
 import {Text} from "../../../shared/ui/Text/Text";
 import {useClicks} from "../lib/useClicks";
-import {useLocalStorage} from "@uidotdev/usehooks";
 import {AuthContext} from "../../../app/providers/AuthContextProvider";
 import {ClickStatus} from "../../../entities/clicks/ui/ClickStatus";
 import {useClickStatusesArray} from "../lib/useClickStatusesArray";
 import {Button} from "../../../shared/ui/Button/Button";
 import styles from "./ClickerPage.module.css"
+import {useLocalStorage} from "../../../shared/lib/useLocalStorage";
 
 export const ClickerPage = () => {
     const [username] = useLocalStorage<string | undefined>("username", undefined)

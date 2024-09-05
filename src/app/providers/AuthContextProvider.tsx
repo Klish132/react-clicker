@@ -1,5 +1,5 @@
-﻿import {useLocalStorage} from "@uidotdev/usehooks";
-import React, {createContext, useCallback, useEffect, useState} from "react";
+﻿import React, {createContext, useCallback, useEffect, useState} from "react";
+import {useLocalStorage} from "../../shared/lib/useLocalStorage";
 
 type AuthContextProps = {
     isLoggedIn: boolean;

@@ -3,7 +3,7 @@ import {useQuery} from "react-query";
 import {axiosInstance} from "../../../shared/config/axios/axiosInstance";
 import {parseResponse} from "../../../shared/lib/parseResponse";
 import {handleError} from "../../../shared/lib/handleError";
-import { useDebounce } from "@uidotdev/usehooks";
+import {useDebounce} from "../../../shared/lib/useDebounce";
 
 export const useClicks = (username: string, id: string): [number | undefined, React.Dispatch<React.SetStateAction<number | undefined>>] => {
     const [clicksCount, setClicksCount] = useState<number | undefined>(undefined)
