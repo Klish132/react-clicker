@@ -2,8 +2,7 @@
 import {Text} from "../../../shared/ui/Text/Text";
 import {useClicks} from "../lib/useClicks";
 import {AuthContext} from "../../../app/providers/AuthContextProvider";
-import {ClickStatus} from "../../../entities/clicks/ui/ClickStatus";
-import {useClickStatusesArray} from "../lib/useClickStatusesArray";
+import {useClickStatusesElement} from "../lib/useClickStatusesElement";
 import {Button} from "../../../shared/ui/Button/Button";
 import styles from "./ClickerPage.module.css"
 import {useLocalStorage} from "../../../shared/lib/useLocalStorage";
@@ -12,9 +11,9 @@ export const ClickerPage = () => {
     const [username] = useLocalStorage<string | undefined>("username", undefined)
     const {id} = useContext(AuthContext) || {};
     const [clicksCount, setClicksCount] = useClicks(username!, id!)
-    const clickStatusesArray = useClickStatusesArray(clicksCount!, 3)
+    const clickStatusesElement = useClickStatusesElement(clicksCount!)
 
-    const clickMultiplier = 1
+    const clickMultiplier = 10
 
     return (
         <div className={styles.page}>
@@ -35,18 +34,16 @@ export const ClickerPage = () => {
                     Clicks: {clicksCount}
                 </Text>
                 <div className={styles.clickerWrapper}>
-                    {clickStatusesArray.map((row, rowIdx) => (
-                        <div key={rowIdx}>
-                            {row.map(leaf => <ClickStatus key={leaf}/>)}
-                        </div>
-                    ))}
-                    <Button
-                        className={styles.clickerButton}
-                        isLarge={true}
-                        onClick={() => setClicksCount(clicksCount! + clickMultiplier)}
-                    >
-                        Click!
-                    </Button>
+                    <div className={styles.clickerButtonContainer}>
+                        <Button
+                            className={styles.clickerButton}
+                            isLarge={true}
+                            onClick={() => setClicksCount(clicksCount! + clickMultiplier)}
+                        >
+                            Click!
+                        </Button>
+                    </div>
+                    {clickStatusesElement}
                 </div>
             </div>
         </div>
