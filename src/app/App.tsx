@@ -1,47 +1,17 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {AuthContext} from "./providers/AuthContextProvider";
 import {Navbar} from "../shared/ui/Navbar/Navbar";
 import {AuthForm} from "../features/users/authenticate/ui/AuthForm";
-import {Modal} from "../shared/ui/Modal/Modal";
-import {postLogIn} from "../entities/user/api/postLogIn";
-import {handleError} from "../shared/lib/handleError";
 import {BrowserRouter} from "react-router-dom";
 import {AppRouter} from "./router/AppRouter";
-import {useLocalStorage} from "../shared/lib/useLocalStorage";
 
 export function App() {
-    const {isLoggedIn, login} = useContext(AuthContext) || {};
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const [, setUsername] = useLocalStorage<string | undefined>("username", undefined)
-
-    const handleAuth = (authUsername: string, authPassword: string) => {
-        postLogIn(authUsername, authPassword)
-            .catch(handleError)
-            .then(guid => {
-                if (guid) {
-                    login!(guid)
-                    setIsAuthModalOpen(false);
-                    setUsername(authUsername)
-                }
-            })
-    }
-
-    useEffect(() => {
-        if (!isLoggedIn) {
-            setIsAuthModalOpen(true);
-        }
-    }, [isLoggedIn]);
+    const {isLoggedIn} = useContext(AuthContext) || {};
 
     return (
         <>
             <BrowserRouter>
-                <Modal
-                    isOpen={isAuthModalOpen}
-                    setIsOpen={setIsAuthModalOpen}
-                    closeOnOutsideClick={false}
-                >
-                    <AuthForm onAuthenticate={handleAuth}/>
-                </Modal>
+                <AuthForm/>
                 <Navbar/>
                 {isLoggedIn
                     ?
