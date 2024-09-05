@@ -13,7 +13,7 @@ export const ClickerPage = () => {
     const [clicksCount, setClicksCount] = useClicks(username!, id!)
     const clickStatusesElement = useClickStatusesElement(clicksCount!)
 
-    const clickMultiplier = 10
+    const clickMultiplier = 1
 
     return (
         <div className={styles.page}>
