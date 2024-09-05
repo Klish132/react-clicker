@@ -1,16 +1,18 @@
 ﻿import React from 'react';
-import Leaf from "../assets/Leaf.svg"
+import {ReactComponent as Leaf} from "../assets/Leaf.svg"
 import styles from "./ClickStatus.module.css"
 
-export const ClickStatus = () => {
+type ClickStatusProps = {
+    color: "#F0EAD2" | "#DDE5B6" | "#ADC178"
+}
 
+export const ClickStatus = (props: ClickStatusProps) => {
     const rand = Math.random()
 
     return (
-        <img
-            alt="status"
+        <Leaf
             className={styles.clickStatus}
-            style={{animationDelay: `-${rand}s`}}
-            src={Leaf}/>
+            style={{animationDelay: `-${rand}s`, color: `${props.color}`}}
+        />
     );
 };

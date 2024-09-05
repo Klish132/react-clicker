@@ -20,6 +20,17 @@ const getLayerStyles = (layerIdx: number) => {
     return layerStyles.join(' ')
 }
 
+const getLayerColor = (layerIdx: number): "#F0EAD2" | "#DDE5B6" | "#ADC178" => {
+    switch (layerIdx) {
+        case 1:
+            return "#F0EAD2";
+        case 2:
+            return "#DDE5B6";
+        default:
+            return "#ADC178";
+    }
+}
+
 export const useClickStatusesElement = (clicksCount: number) => useMemo(() => {
     let result = []
 
@@ -27,14 +38,23 @@ export const useClickStatusesElement = (clicksCount: number) => useMemo(() => {
         let topCount = 2 * layer + 1;
         let perSideCount = layer + 1;
 
-        let opacityMultiplier = 1 / Math.pow(10, layer) * clicksCount;
+        let layerOpacityMultiplier = 1 / Math.pow(10, layer) * clicksCount;
+        let layerStatusesColor = getLayerColor(layer);
 
-        let top = (Array.from(Array(topCount).keys()).map(topStatusIdx => <ClickStatus key={topStatusIdx}/>))
+        let top = (Array.from(Array(topCount).keys()).map(topStatusIdx =>
+            <ClickStatus
+                key={topStatusIdx}
+                color={layerStatusesColor}
+            />))
 
         let sides = []
         for (let i = 0; i < 2; i++) {
             sides.push(<div className={styles.statusesSingleSideContainer}>
-                {Array.from(Array(perSideCount).keys()).map(statusIdx => <ClickStatus key={statusIdx}/>)}
+                {Array.from(Array(perSideCount).keys()).map(statusIdx =>
+                    <ClickStatus
+                        key={statusIdx}
+                        color={layerStatusesColor}
+                    />)}
             </div>)
         }
 
@@ -42,7 +62,7 @@ export const useClickStatusesElement = (clicksCount: number) => useMemo(() => {
             <div
                 key={layer}
                 className={getLayerStyles(layer)}
-                style={{opacity: opacityMultiplier}}
+                style={{opacity: layerOpacityMultiplier}}
             >
                 <div
                     className={styles.topContainer}
