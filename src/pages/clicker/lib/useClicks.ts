@@ -1,9 +1,10 @@
 ﻿import React, {useEffect, useMemo, useState} from "react";
-import {useQuery} from "react-query";
+import {useMutation, useQuery} from "react-query";
 import {axiosInstance} from "../../../shared/config/axios/axiosInstance";
 import {parseResponse} from "../../../shared/lib/parseResponse";
 import {handleError} from "../../../shared/lib/handleError";
 import {useDebounce} from "../../../shared/lib/useDebounce";
+import {ClicksDTO} from "../model/ClicksDTO";
 
 export const useClicks = (username: string, id: string): [number | undefined, React.Dispatch<React.SetStateAction<number | undefined>>] => {
     const [clicksCount, setClicksCount] = useState<number | undefined>(undefined)
@@ -19,19 +20,25 @@ export const useClicks = (username: string, id: string): [number | undefined, Re
         .get<number>(`clicks/${username}`, config)
         .then(parseResponse))
 
+    const { mutate: putClicks } = useMutation(
+        (data: ClicksDTO) => axiosInstance.put(`clicks/${username}`, data, config)
+            .catch(handleError),
+        {
+            onSuccess: () => {
+                setClicksCount(debouncedClicksCount)
+            }
+        }
+    )
+
     useEffect(() => {
         setClicksCount(clicks => apiClicksCount ?? clicks);
     }, [apiClicksCount])
 
     useEffect(() => {
         if (debouncedClicksCount || debouncedClicksCount === 0) {
-            axiosInstance.put(`clicks/${username}`, {clicksCount: debouncedClicksCount}, config)
-                .catch(handleError)
-                .then(() => {
-                    setClicksCount(debouncedClicksCount)
-                })
+            putClicks({clicksCount: debouncedClicksCount})
         }
-    }, [username, config, debouncedClicksCount])
+    }, [putClicks, debouncedClicksCount])
 
     return useMemo(() => [
         clicksCount,
