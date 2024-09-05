@@ -27,24 +27,28 @@ export const ClickerPage = () => {
                     Reset
                 </Button>
             </div>
-            <Text
-                sizePx={50}
-                color={"#DDE5B6"}
-            >
-                Clicks: {clicksCount}
-            </Text>
-            {clickStatusesArray.map((row, rowIdx) => (
-                <div key={rowIdx}>
-                    {row.map(leaf => <ClickStatus key={leaf}/>)}
+            <div className={styles.pageMain}>
+                <Text
+                    sizePx={50}
+                    color={"#DDE5B6"}
+                >
+                    Clicks: {clicksCount}
+                </Text>
+                <div className={styles.clickerWrapper}>
+                    {clickStatusesArray.map((row, rowIdx) => (
+                        <div key={rowIdx}>
+                            {row.map(leaf => <ClickStatus key={leaf}/>)}
+                        </div>
+                    ))}
+                    <Button
+                        className={styles.clickerButton}
+                        isLarge={true}
+                        onClick={() => setClicksCount(clicksCount! + clickMultiplier)}
+                    >
+                        Click!
+                    </Button>
                 </div>
-            ))}
-            <Button
-                className={styles.clickerButton}
-                isLarge={true}
-                onClick={() => setClicksCount(clicksCount! + clickMultiplier)}
-            >
-                Click!
-            </Button>
+            </div>
         </div>
     );
 };
