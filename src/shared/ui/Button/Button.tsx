@@ -14,7 +14,7 @@ export const Button = ({isLarge, ...props}: ButtonProps) => {
 
     return (
         <button {...props} className={classes}>
-            <div className={styles.buttonLargeMeta}>
+            <div data-testid="InnerDiv" className={styles.buttonLargeMeta}>
                 {props.children}
             </div>
         </button>

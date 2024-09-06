@@ -19,7 +19,6 @@ export const ClickerPage = () => {
         <div className={styles.page}>
             <div className={styles.pageHeader}>
                 <Button
-                    className={styles.pageHeaderItem}
                     isLarge={false}
                     onClick={() => setClicksCount(0)}
                 >
@@ -36,7 +35,6 @@ export const ClickerPage = () => {
                 <div className={styles.clickerWrapper}>
                     <div className={styles.clickerButtonContainer}>
                         <Button
-                            className={styles.clickerButton}
                             isLarge={true}
                             onClick={() => setClicksCount(clicksCount! + clickMultiplier)}
                         >
