@@ -1,7 +1,7 @@
 ﻿import React, {ButtonHTMLAttributes, useMemo} from 'react';
 import styles from "./Button.module.css"
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     isLarge: boolean
 }
 
