@@ -1,16 +1,14 @@
 ﻿import React from 'react';
 
-type TextProps = {
+export type TextProps = {
     sizePx: number;
     color: "#DDE5B6" | "#ADC178" | "#A98467",
     children: React.ReactNode;
-    className?: string;
 }
 
 export const Text = (props: TextProps) => {
     return (
         <p
-            className={props.className}
             style={{
                 fontWeight: "bold",
                 fontSize: props.sizePx,
