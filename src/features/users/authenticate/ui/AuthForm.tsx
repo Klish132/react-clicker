@@ -7,6 +7,7 @@ import {AuthContext} from "../../../../app/providers/AuthContextProvider";
 import {useLocalStorage} from "../../../../shared/lib/useLocalStorage";
 import {postLogIn} from "../../../../entities/user/api/postLogIn";
 import {handleError} from "../../../../shared/lib/handleError";
+import styles from "./AuthForm.module.css"
 
 export const AuthForm = () => {
     const [authInfo, setAuthInfo] = useState({username: "", password: ""});
@@ -41,10 +42,13 @@ export const AuthForm = () => {
             setIsOpen={setIsAuthModalOpen}
             closeOnOutsideClick={false}
         >
-            <form onSubmit={e => {
-                e.preventDefault();
-                handleAuth(authInfo.username, authInfo.password);
-            }}>
+            <form
+                className={styles.authForm}
+                onSubmit={e => {
+                    e.preventDefault();
+                    handleAuth(authInfo.username, authInfo.password);
+                }}
+            >
                 <Text sizePx={30} color={"#ADC178"}>Log in</Text>
                 <Input
                     placeholder="Username..."

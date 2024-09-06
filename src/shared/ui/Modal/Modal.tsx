@@ -1,4 +1,4 @@
-﻿import React, {useMemo} from 'react';
+﻿import React, {HTMLAttributes, useMemo} from 'react';
 import styles from "./Modal.module.css"
 
 type ModalProps = {
