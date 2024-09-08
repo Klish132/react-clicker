@@ -1,0 +1,16 @@
+﻿.clickStatus {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    animation: leaf 0.7s linear infinite;
+}
+
+@keyframes leaf {
+    14.2% { transform: translate(0, 0); }
+    28.4% { transform: translate(2px, 2px); }
+    42.6% { transform: translate(0, 4px); }
+    56.8% { transform: translate(2px, 6px); }
+    71% { transform: translate(0, 4px); }
+    85.2% { transform: translate(2px, 2px); }
+    99.4% { transform: translate(0, 0); }
+}
